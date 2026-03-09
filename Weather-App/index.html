@@ -9,6 +9,9 @@
 
   <body>
     <div class="card">
+      <video class="bg-video" autoplay muted loop>
+        <source src="" type="video/mp4" />
+      </video>
       <div class="search">
         <input type="text" placeholder="Enter city name" spellcheck="false" />
         <button><img src="../Weather-App/images/search.png" alt="" /></button>
@@ -40,13 +43,14 @@
     </div>
 
     <script>
-      const apiKey = "API KEY HERE";
+      const apiKey = "Your API Key";
       const apiUrl =
         "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
       const searchBox = document.querySelector(".search input");
       const searchBtn = document.querySelector(".search button");
       const weatherIcon = document.querySelector(".weather-icon");
+      const bgVideo = document.querySelector(".bg-video");
 
       async function checkWeather(city) {
         const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
@@ -55,6 +59,8 @@
           document.querySelector(".weather").style.display = "none";
         } else {
           var data = await response.json();
+          console.log(data);
+
           document.querySelector(".city").innerHTML = data.name;
           document.querySelector(".humidity").innerHTML =
             data.main.humidity + "%";
@@ -64,14 +70,31 @@
 
           if (data.weather[0].main == "Clouds") {
             weatherIcon.src = "images/clouds.png";
+            bgVideo.style.display = "block";
+            bgVideo.src = "assets/cloud.mp4";
+            bgVideo.load();
           } else if (data.weather[0].main == "Clear") {
             weatherIcon.src = "images/clear.png";
+            bgVideo.style.display = "block";
+            bgVideo.src = "assets/clear.mp4";
+            bgVideo.load();
           } else if (data.weather[0].main == "Rain") {
             weatherIcon.src = "images/rain.png";
+            bgVideo.style.display = "block";
+            bgVideo.src = "assets/rainy.mp4";
+            bgVideo.load();
           } else if (data.weather[0].main == "Drizzle") {
             weatherIcon.src = "images/drizzle.png";
+            bgVideo.style.display = "block";
+            bgVideo.src = "assets/drizzle.mp4";
+            bgVideo.load();
           } else if (data.weather[0].main == "Mist") {
             weatherIcon.src = "images/mist.png";
+          } else if (data.weather[0].main == "Snow") {
+            weatherIcon.src = "images/mist.png";
+            bgVideo.style.display = "block";
+            bgVideo.src = "assets/snow.mp4";
+            bgVideo.load();
           }
 
           document.querySelector(".weather").style.display = "block";
