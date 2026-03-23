@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Darkmode</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar">
+        <h3>TREKK</h3>
+        <img src="./moon.png" alt="" id="imgbtn" />
+      </nav>
+      <div class="hero">
+        <div><h1>WE ARE</h1></div>
+        <div>
+          <h4>
+            If you’re an adventurer who loves being out in nature, a hiking and
+            trekking tour should be next on your list. You can expect great
+            wildlife photography opportunities and the chance to travel with a
+            group of like-minded individuals who love the great outdoors.
+          </h4>
+        </div>
+      </div>
+      <div class="image"></div>
+    </div>
+
+    <script>
+      const imgbtn = document.getElementById("imgbtn");
+      imgbtn.addEventListener("click", (e) => {
+        document.body.classList.toggle("dark-theme");
+        if (document.body.classList.contains("dark-theme")) {
+          imgbtn.src = "./sun.png";
+        } else {
+          imgbtn.src = "./moon.png";
+        }
+      });
+    </script>
+  </body>
+</html>
